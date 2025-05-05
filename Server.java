@@ -1,3 +1,6 @@
+
+
+```java
 import java.rmi.activation.ActivationGroup;
 import java.rmi.activation.ActivationGroupDesc;
 import java.rmi.activation.ActivationGroupID;
@@ -16,20 +19,20 @@ public class Server {
             }
             
             // Setup activation group
-            Properties props = new Properties();
+            var props = new Properties();
             props.put("java.security.policy", "policy.all");
-            ActivationGroupDesc groupDesc = new ActivationGroupDesc(props, null);
-            ActivationGroupID groupID = ActivationGroup.getSystem().registerGroup(groupDesc);
+            var groupDesc = new ActivationGroupDesc(props, null);
+            var groupID = ActivationGroup.getSystem().registerGroup(groupDesc);
             
             // Create activation descriptor
-            String location = "file:" + System.getProperty("user.dir") + "/";
-            ActivationDesc desc = new ActivationDesc(groupID, "HelloImpl", location, null);
+            var location = "file:" + System.getProperty("user.dir") + "/";
+            var desc = new ActivationDesc(groupID, "HelloImpl", location, null);
             
             // Register the activatable object
-            Hello obj = (Hello) Activatable.register(desc);
+            var obj = (Hello) Activatable.register(desc);
             
             // Create and populate the registry
-            Registry registry = LocateRegistry.createRegistry(1099);
+            var registry = LocateRegistry.createRegistry(1099);
             registry.rebind("Hello", obj);
             
             System.out.println("Server ready");
@@ -42,3 +45,4 @@ public class Server {
         }
     }
 }
+```

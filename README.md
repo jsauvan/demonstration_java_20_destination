@@ -1,20 +1,5 @@
-# SERVER_CLIENT rmiregistry
-
-This code has  4 classes.
-
-## Client
-
-Client sends a resquest to the server
 
 
-## Hello
+There is no Java code to migrate in the provided file. The file appears to be a README.md file containing text describing a server-client application description. There is no Java code to update to Java 20 standards.
 
-Hello says hello to the server
-
-## HelloImpl
-
-HelloImpl implement the abality to say hello to the world
-
-## Server 
-
-Server wakes up and answer the the request of the client by repeating what the class Hello told it.
+Please provide the actual Java files that need to be migrated, and I will be happy to assist you.
