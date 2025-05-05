@@ -1,3 +1,6 @@
+
+
+```java
 import java.rmi.RemoteException;
 import java.rmi.MarshalledObject;
 import java.rmi.activation.Activatable;
@@ -21,11 +24,11 @@ public class HelloImpl extends Activatable implements Hello {
 
     public static void main(String[] args) {
         try {
-            Properties props = new Properties();
-            ActivationGroupDesc groupDesc = new ActivationGroupDesc(props, null);
-            ActivationGroupID groupID = ActivationGroup.getSystem().registerGroup(groupDesc);
-            ActivationDesc desc = new ActivationDesc(groupID, "HelloImpl", null, null);
-            HelloImpl obj = (HelloImpl) Activatable.register(desc);
+            var props = new Properties();
+            var groupDesc = new ActivationGroupDesc(props, null);
+            var groupID = ActivationGroup.getSystem().registerGroup(groupDesc);
+            var desc = new ActivationDesc(groupID, "HelloImpl", null, null);
+            var obj = (HelloImpl) Activatable.register(desc);
             System.out.println("Object registered: " + obj.sayHello());
         } catch (Exception e) {
             System.err.println("Exception: " + e.toString());
@@ -33,3 +36,4 @@ public class HelloImpl extends Activatable implements Hello {
         }
     }
 }
+```
