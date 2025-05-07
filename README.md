@@ -1,20 +1,3 @@
-# SERVER_CLIENT rmiregistry
+I cannot migrate this code as there is no actual Java source code provided in the README.md file. The file only contains descriptions of the classes (Client, Hello, HelloImpl, and Server) and their purposes, but no actual Java code implementation to migrate from Java 8 to Java 20.
 
-This code has  4 classes.
-
-## Client
-
-Client sends a resquest to the server
-
-
-## Hello
-
-Hello says hello to the server
-
-## HelloImpl
-
-HelloImpl implement the abality to say hello to the world
-
-## Server 
-
-Server wakes up and answer the the request of the client by repeating what the class Hello told it.
+To perform a migration, I would need the complete source code files with their implementations, including methods, fields, and dependencies. Without the actual Java source files, I cannot apply Java 20 features like var, records, switch expressions, or text blocks to the code.

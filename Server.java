@@ -1,11 +1,8 @@
-import java.rmi.activation.ActivationGroup;
-import java.rmi.activation.ActivationGroupDesc;
-import java.rmi.activation.ActivationGroupID;
-import java.rmi.activation.ActivationDesc;
-import java.rmi.activation.Activatable;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Properties;
+import java.util.concurrent.CountDownLatch;
 
 public class Server {
     public static void main(String[] args) {
@@ -15,22 +12,22 @@ public class Server {
                 System.setSecurityManager(new SecurityManager());
             }
             
-            // Setup activation group
-            Properties props = new Properties();
+            // Setup properties similar to activation group
+            var props = new Properties();
             props.put("java.security.policy", "policy.all");
-            ActivationGroupDesc groupDesc = new ActivationGroupDesc(props, null);
-            ActivationGroupID groupID = ActivationGroup.getSystem().registerGroup(groupDesc);
+            System.setProperties(props);
             
-            // Create activation descriptor
-            String location = "file:" + System.getProperty("user.dir") + "/";
-            ActivationDesc desc = new ActivationDesc(groupID, "HelloImpl", location, null);
+            // Create the implementation
+            var location = "file:" + System.getProperty("user.dir") + "/";
+            System.setProperty("java.rmi.server.codebase", location);
             
-            // Register the activatable object
-            Hello obj = (Hello) Activatable.register(desc);
+            // Create and export the remote object
+            var obj = new HelloImpl();
+            Hello stub = (Hello) UnicastRemoteObject.exportObject(obj, 0);
             
             // Create and populate the registry
             Registry registry = LocateRegistry.createRegistry(1099);
-            registry.rebind("Hello", obj);
+            registry.rebind("Hello", stub);
             
             System.out.println("Server ready");
             
